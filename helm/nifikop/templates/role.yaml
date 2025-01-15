@@ -88,6 +88,8 @@ rules:
   - "nifiparametercontexts"
   - "nifinodegroupautoscalers"
   - "nificonnections"
+  - "nifiusers/finalizers"
+  - "nificlusters/finalizers" 
   verbs:
   - create
   - delete
@@ -171,6 +173,14 @@ rules:
   verbs:
     - create
     - patch
+- apiGroups:
+  - security.openshift.io
+  resourceNames:
+  - {{ .Values.sccName }}
+  resources:
+  - securitycontextconstraints
+  verbs:
+  - use
 ---
 {{- end}}
 {{- end}}
